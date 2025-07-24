@@ -6,6 +6,7 @@
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -16,40 +17,73 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(to right bottom, #80dfe1, #4e7afa);
+  background-image: linear-gradient(135deg, #80dfe1, #4e7afa);
+  background-size: 200% 200%;
+  animation: bgMove 10s ease infinite;
+}
+
+@keyframes bgMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 main {
-  background-color: #f7f7f7;
+  background-color: #fefefe;
   padding: 5rem 8rem;
-  border-radius: 9px;
-  box-shadow: 0px 2.8px 2.8px rgba(0, 0, 0, 0.028),
-    0px 6.7px 6.7px rgba(0, 0, 0, 0.04), 0px 12.5px 12.5px rgba(0, 0, 0, 0.05),
-    0px 22.3px 22.3px rgba(0, 0, 0, 0.06),
-    0px 41.8px 41.8px rgba(0, 0, 0, 0.072), 0px 100px 100px rgba(0, 0, 0, 0.1);
+  border-radius: 1.5rem;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 h1 {
   font-size: 6rem;
   text-transform: uppercase;
   font-weight: 900;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   word-spacing: 5px;
   text-align: center;
-  line-height: 1;
+  line-height: 1.1;
   margin-bottom: 2rem;
-  background-clip: text;
   background-image: linear-gradient(to right bottom, #80dfe1, #4e7afa);
+  background-clip: text;
   color: transparent;
-  transform: skew(-20deg);
+  transform: skew(-10deg);
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200%;
+  }
+  100% {
+    background-position: 200%;
+  }
 }
 
 time {
   display: block;
   width: 36rem;
   text-align: center;
-  margin: 0 auto;
-  margin-bottom: 4rem;
+  margin: 0 auto 4rem;
   background-color: #e7e7e7;
   border-radius: 9px;
   padding: 1rem;
@@ -57,6 +91,17 @@ time {
   font-weight: 700;
   color: #4a9fee;
   text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
 }
 
 form {
@@ -73,22 +118,33 @@ form div {
 }
 
 label {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 2.4rem;
   display: block;
   width: 20rem;
 }
 
-select {
+select,
+input[type="range"] {
   font-family: inherit;
   font-size: 1.8rem;
   padding: 0.6rem;
   border: 1px solid #999;
-  border-radius: 5px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+select:focus,
+input[type="range"]:focus {
+  outline: none;
+  border-color: #4e7afa;
+  box-shadow: 0 0 0 3px rgba(78, 122, 250, 0.2);
 }
 
 span {
   font-size: 1.8rem;
+  font-weight: 500;
+  color: #333;
 }
 
 section {
@@ -97,8 +153,9 @@ section {
   justify-content: center;
   gap: 3rem;
   background-color: #e7e7e7;
-  border-radius: 9px;
-  padding: 1.6rem;
+  border-radius: 1rem;
+  padding: 2rem;
+  animation: fadeIn 0.6s ease-in;
 }
 
 p {
@@ -108,21 +165,35 @@ p {
   background-clip: text;
   background-image: linear-gradient(to right bottom, #80dfe1, #4e7afa);
   color: transparent;
+  transition: all 0.2s;
+  letter-spacing: 1px;
 }
 
 button {
-  height: 3.6rem;
-  aspect-ratio: 1;
+  height: 4.2rem;
+  width: 4.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   border: none;
-  background-color: #67adee;
+  background-color: #4e7afa;
   color: #fff;
   font-weight: 900;
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   cursor: pointer;
+  box-shadow: 0 0.5rem 1.5rem rgba(78, 122, 250, 0.4);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #3b6ce2;
+  transform: scale(1.1);
+}
+
+button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0.2rem 0.6rem rgba(78, 122, 250, 0.5);
 }
 
 .btn-sound {
@@ -131,4 +202,11 @@ button {
   right: 3.2rem;
   background-color: transparent;
   font-size: 3.2rem;
+  cursor: pointer;
+  color: #4e7afa;
+  transition: transform 0.2s;
+}
+
+.btn-sound:hover {
+  transform: scale(1.2);
 }
